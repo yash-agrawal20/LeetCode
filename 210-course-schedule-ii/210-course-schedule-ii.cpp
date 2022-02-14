@@ -24,7 +24,7 @@ public:
         
         while(!q.empty()){
             
-            auto node = q.front();
+            int node = q.front();
             q.pop();
             count++;
             topo.push_back(node);
