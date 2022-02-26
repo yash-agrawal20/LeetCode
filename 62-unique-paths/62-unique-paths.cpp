@@ -39,29 +39,52 @@ public:
         // return totalPathsm(m-1, n-1, dp);
         
         //Tabulation Approach
-        vector<vector<int>> dp(m, vector<int> (n, -1));
+//         vector<vector<int>> dp(m, vector<int> (n, -1));
         
-        for(int i = 0; i < m; i++){
+//         for(int i = 0; i < m; i++){
             
-            for(int j = 0; j < n; j++){
+//             for(int j = 0; j < n; j++){
                 
-                if(i == 0 && j == 0) dp[0][0] = 1;
+//                 if(i == 0 && j == 0) dp[0][0] = 1;
                 
-                else{
+//                 else{
                     
-                    int down = 0, right = 0;
-                    if(i > 0)
-                        down = dp[i-1][j];
+//                     int down = 0, right = 0;
+//                     if(i > 0)
+//                         down = dp[i-1][j];
                     
-                    if(j > 0)
-                        right = dp[i][j-1];
+//                     if(j > 0)
+//                         right = dp[i][j-1];
                     
-                    dp[i][j] = down + right;
-                }
+//                     dp[i][j] = down + right;
+//                 }
+//             }
+//         }
+        
+//         return dp[m-1][n-1];
+        
+        //Space Optimization Solution
+        vector<int> prev(n, 0);
+        vector<int> dp(n, 0);
+        
+        prev[0] = 1;
+        for(int j = 0; j < m; j++){
+            
+            for(int i = 0; i < n; i++){
+
+                int right = 0;
+                if(i > 0)
+                    right = dp[i-1];
+
+                int down = prev[i];
+
+                dp[i] = right + down;
             }
+            
+            prev = dp;
+        
         }
         
-        return dp[m-1][n-1];
-        
+        return dp[n-1];        
     }
 };
