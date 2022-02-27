@@ -73,7 +73,7 @@ public:
             
             for(int j = 0; j < n; j++){
                 
-                int down = 10000, dr = 10000, dl = 10000;
+                int down = 1e9, dr = 1e9, dl = 1e9;
                 
                 down = matrix[i][j] + prev[j];
                 
@@ -92,7 +92,7 @@ public:
             prev = dp;
         }
         
-        int min_num = 10000;
+        int min_num = 1e9;
         for(int i = 0; i < n; i++){
             
             min_num = min(min_num, prev[i]);
