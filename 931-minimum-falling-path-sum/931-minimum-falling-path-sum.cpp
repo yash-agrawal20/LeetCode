@@ -35,34 +35,70 @@ public:
 //         return min_num;
         
         //Tabulation Approach
-        vector<vector<int>> dp(m, vector<int> (n, 0));
-        dp[0] = matrix[0];
+        //Note: Tabulation Approaches are always faster than memoization
+//         vector<vector<int>> dp(m, vector<int> (n, 0));
+//         dp[0] = matrix[0];
+        
+//         for(int i = 1; i < m; i++){
+            
+//             for(int j = 0; j < n; j++){
+                
+//                 int down = 10000, dr = 10000, dl = 10000;
+//                 down = matrix[i][j] + dp[i-1][j];
+                
+//                 if(j < (n-1))
+//                     dl = matrix[i][j] + dp[i-1][j+1];
+                    
+//                 if(j > 0)
+//                     dr = matrix[i][j] + dp[i-1][j-1];
+                
+//                 int x = min(dr, dl);
+//                 dp[i][j] = min(down, x);
+//             }
+//         }
+        
+//         int min_num = 10000;
+//         for(int i = 0; i < n; i++){
+            
+//             min_num = min(min_num, dp[m-1][i]);
+//         }
+        
+//         return min_num;
+        
+        //Space Optimization solution;
+        vector<int> prev(n, 0), dp(n, 0);
+        prev = matrix[0];
         
         for(int i = 1; i < m; i++){
             
             for(int j = 0; j < n; j++){
                 
                 int down = 10000, dr = 10000, dl = 10000;
-                down = matrix[i][j] + dp[i-1][j];
                 
-                if(j < (n-1))
-                    dl = matrix[i][j] + dp[i-1][j+1];
-                    
-                if(j > 0)
-                    dr = matrix[i][j] + dp[i-1][j-1];
+                down = matrix[i][j] + prev[j];
                 
-                int x = min(dr, dl);
-                dp[i][j] = min(down, x);
+                if(j > 0){
+                    dl = matrix[i][j] + prev[j-1];
+                }
+                
+                if(j < (n-1)){
+                    dr = matrix[i][j] + prev[j+1];
+                }
+                
+                int x = min(dl, dr);
+                dp[j] = min(down, x);
             }
+            
+            prev = dp;
         }
         
         int min_num = 10000;
         for(int i = 0; i < n; i++){
             
-            min_num = min(min_num, dp[m-1][i]);
+            min_num = min(min_num, prev[i]);
         }
         
-        return min_num;
+        return min_num;      
         
         
         
