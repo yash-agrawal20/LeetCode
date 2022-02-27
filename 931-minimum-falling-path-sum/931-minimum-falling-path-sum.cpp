@@ -23,16 +23,48 @@ public:
         int n = matrix[0].size();
         
         //Memoization Approach
-        vector<vector<int>> dp(m, vector<int> (n, -1));
-        int min_num = 10000;
+//         vector<vector<int>> dp(m, vector<int> (n, -1));
+//         int min_num = 10000;
         
+//         for(int i = 0; i < n; i++){
+            
+//             int x = minSum(m-1, i, matrix, dp);
+//             min_num = min(min_num, x);
+//         }
+        
+//         return min_num;
+        
+        //Tabulation Approach
+        vector<vector<int>> dp(m, vector<int> (n, 0));
+        dp[0] = matrix[0];
+        
+        for(int i = 1; i < m; i++){
+            
+            for(int j = 0; j < n; j++){
+                
+                int down = 10000, dr = 10000, dl = 10000;
+                down = matrix[i][j] + dp[i-1][j];
+                
+                if(j < (n-1))
+                    dl = matrix[i][j] + dp[i-1][j+1];
+                    
+                if(j > 0)
+                    dr = matrix[i][j] + dp[i-1][j-1];
+                
+                int x = min(dr, dl);
+                dp[i][j] = min(down, x);
+            }
+        }
+        
+        int min_num = 10000;
         for(int i = 0; i < n; i++){
             
-            int x = minSum(m-1, i, matrix, dp);
-            min_num = min(min_num, x);
+            min_num = min(min_num, dp[m-1][i]);
         }
         
         return min_num;
+        
+        
         
     }
 };
