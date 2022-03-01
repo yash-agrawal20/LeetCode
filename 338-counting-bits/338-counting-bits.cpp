@@ -1,15 +1,24 @@
 class Solution {
 private:
+    //Brute Force Method
+//     int countOne(int n){
+        
+//         int count = 0;
+//         while(n){
+//             if(n & 1) count++;
+            
+//             n >>= 1;//Right Shift by 1;          
+//         }
+        
+//         return count;
+//     }
+    
+    //Recursive Solution
     int countOne(int n){
         
-        int count = 0;
-        while(n){
-            if(n & 1) count++;
-            
-            n >>= 1;//Right Shift by 1;          
-        }
+        if(n == 0) return 0;
         
-        return count;
+        else return (n & 1) + countOne(n >> 1);
     }
     
 public:
