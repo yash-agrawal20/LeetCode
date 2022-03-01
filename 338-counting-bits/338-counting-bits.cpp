@@ -1,3 +1,5 @@
+//Reference: https://www.geeksforgeeks.org/count-set-bits-in-an-integer/
+
 class Solution {
 private:
     //Brute Force Method
@@ -21,7 +23,7 @@ private:
 //         else return (n & 1) + countOne(n >> 1);
 //     }
     
-    //Brian Kerninghans Algorithm TC = O(logn)
+    //Brian Kerninghans Algorithm TC = O(logn) (Fastest)
     int countOne(int n){
         
         int count = 0;
