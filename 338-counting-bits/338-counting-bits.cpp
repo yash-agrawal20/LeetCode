@@ -14,11 +14,23 @@ private:
 //     }
     
     //Recursive Solution
+//     int countOne(int n){
+        
+//         if(n == 0) return 0;
+        
+//         else return (n & 1) + countOne(n >> 1);
+//     }
+    
+    //Brian Kerninghans Algorithm TC = O(logn)
     int countOne(int n){
         
-        if(n == 0) return 0;
+        int count = 0;
+        while(n){
+            n &= (n-1);
+            count++;
+        }
         
-        else return (n & 1) + countOne(n >> 1);
+        return count;
     }
     
 public:
