@@ -1,3 +1,6 @@
+/*
+https://leetcode.com/problems/count-all-valid-pickup-and-delivery-options/discuss/516968/JavaC%2B%2BPython-Easy-and-Concise
+*/
 class Solution {
 public:
     int countOrders(int n) {
