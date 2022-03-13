@@ -9,6 +9,25 @@
  * };
  */
 class Solution {
+    ListNode* newHead(ListNode* curr, ListNode* prev, ListNode* forward){
+        
+        if(curr == NULL)
+            return prev;
+        
+        //Storing the address of the next node
+        forward = curr->next;
+        
+        //Revering the link
+        curr->next = prev;
+        
+        //Moving step forward
+        prev = curr;
+        curr = forward;
+        
+        return newHead(curr, prev, forward);
+        
+    }
+    
 public:
     ListNode* reverseList(ListNode* head) {
         
@@ -16,21 +35,24 @@ public:
         ListNode* prev = NULL;
         ListNode* forward = NULL;
         
-        //Iterative Approach
-        while(curr != NULL){
-            
-            //Store curr->next
-            forward = curr->next;
-            
-            //Reverse the link
-            curr->next = prev;
-            
-            //Move the pointers forward
-            prev = curr;
-            curr = forward;
-        }
+        //Recursive Approach
+        return newHead(curr, prev, forward);
         
-        return prev;
+        //Iterative Approach
+//         while(curr != NULL){
+            
+//             //Store curr->next
+//             forward = curr->next;
+            
+//             //Reverse the link
+//             curr->next = prev;
+            
+//             //Move the pointers forward
+//             prev = curr;
+//             curr = forward;
+//         }
+        
+//         return prev;
         
     }
 };
