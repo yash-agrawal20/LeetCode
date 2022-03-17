@@ -1,7 +1,8 @@
 class Solution {
 public:
     vector<int> intersection(vector<int>& nums1, vector<int>& nums2) {
-        
+   
+//Using set data structure        
         set<int> st;
         vector<int> res;
         
@@ -21,7 +22,6 @@ public:
             }
         }
         
-        return res;       
-        
+        return res;        
     }
 };
