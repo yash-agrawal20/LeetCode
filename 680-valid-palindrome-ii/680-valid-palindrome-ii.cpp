@@ -25,7 +25,7 @@ public:
 //         int count = 0;
         
 //         //Two - Pointer approach
-//         while(left <= right){
+//         while(left < right){
             
 //             if(s[left] != s[right]){
                 
