@@ -13,22 +13,33 @@ public:
     ListNode* middleNode(ListNode* head) {
         
         //Returns the total number of nodes present in Linked List
-        int count = 0;
-        ListNode* temp = head;
+        //O(n)
+//         int count = 0;
+//         ListNode* temp = head;
         
-        while(temp){
-            count++;
-            temp = temp->next;
+//         while(temp){
+//             count++;
+//             temp = temp->next;
+//         }
+        
+//         int req = count/2;
+//         ListNode* res = head;
+        
+//         while(req--){
+//             res = res->next;
+//         }       
+        
+//         return res;  
+        
+        //Using slow ans fast pointers
+        ListNode* fast = head;
+        ListNode* slow = head;
+        
+        while(fast && fast->next){
+            slow = slow->next;
+            fast = fast->next->next;
         }
         
-        int req = count/2;
-        ListNode* res = head;
-        
-        while(req--){
-            res = res->next;
-        }       
-        
-        return res;       
-        
+        return slow;
     }
 };
