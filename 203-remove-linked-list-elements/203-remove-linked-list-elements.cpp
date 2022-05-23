@@ -15,20 +15,32 @@ class Solution {
 public:
     ListNode* removeElements(ListNode* head, int val) {
         
-        ListNode* dummy = new ListNode(-1, head);
-        ListNode* prev = dummy;
+        //Iterative Approach
+//         ListNode* dummy = new ListNode(-1, head);
+//         ListNode* prev = dummy;
         
-        while(head){
+//         while(head){
             
-            if(head->val == val)
-                prev->next = head->next;
-            else
-                prev = head;
+//             if(head->val == val)
+//                 prev->next = head->next;
+//             else
+//                 prev = head;
             
-            head = head->next;
-        }
+//             head = head->next;
+//         }
         
-        return dummy->next;
+//         return dummy->next;
+        
+        //Recursive Solution
+        if(!head)
+            return NULL;
+        
+        head->next = removeElements(head->next, val);
+        
+        if(head->val == val)
+            return head->next;
+        else
+            return head;
         
     }
 };
