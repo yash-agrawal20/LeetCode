@@ -1,3 +1,5 @@
+//https://leetcode.com/problems/palindrome-linked-list/discuss/1137696/Short-and-Easy-w-Explanation-or-T-%3A-O(N)-S-%3A-O(1)-Solution-using-Fast-and-Slow
+
 /**
  * Definition for singly-linked list.
  * struct ListNode {
@@ -12,26 +14,57 @@ class Solution {
 public:
     bool isPalindrome(ListNode* head) {
         
-        ListNode* temp = head;
-        vector<int> s;
+        //TC: O(n); SC: O(n)
+//         ListNode* temp = head;
+//         vector<int> s;
         
-        while(temp){
-            s.push_back(temp->val);
-            temp = temp->next;
+//         while(temp){
+//             s.push_back(temp->val);
+//             temp = temp->next;
+//         }
+        
+//         int low = 0;
+//         int high = s.size() - 1;
+        
+//         while(low <= high){
+            
+//             if(s[low] != s[high])
+//                 return false;
+            
+//             low++;
+//             high--;
+//         }
+        
+//         return true;
+        
+        //TC: O(n); SC: O(1)
+        ListNode *slow = head, *fast = head;
+        ListNode *tmp, *prev = NULL;
+        
+        while(fast && fast->next){
+            
+            fast = fast->next->next;
+            //Reversing a Linked list
+            tmp = slow->next;
+            slow->next = prev;
+            prev = slow;
+            slow = tmp;
         }
         
-        int low = 0;
-        int high = s.size() - 1;
+        //For odd length linked list
+        if(fast)
+            slow = slow->next;
         
-        while(low <= high){
+        while(slow){
             
-            if(s[low] != s[high])
+            if(slow->val != prev->val)
                 return false;
             
-            low++;
-            high--;
+            slow = slow->next;
+            prev = prev->next;
         }
         
         return true;
+        
     }
 };
