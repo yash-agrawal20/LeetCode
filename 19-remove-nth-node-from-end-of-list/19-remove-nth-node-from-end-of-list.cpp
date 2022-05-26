@@ -12,24 +12,43 @@ class Solution {
 public:
     ListNode* removeNthFromEnd(ListNode* head, int n) {
         
-        unordered_map<int, ListNode*> mp;
-        int m = 0;
-        ListNode* temp = head;
+//         unordered_map<int, ListNode*> mp;
+//         int m = 0;
+//         ListNode* temp = head;
         
-        while(temp){
+//         while(temp){
             
-            mp[m] = temp;
-            m++;
-            temp = temp->next;
+//             mp[m] = temp;
+//             m++;
+//             temp = temp->next;
+//         }
+        
+//         if((m - n) == 0)
+//             head = head->next;
+        
+//         else
+//             mp[m-n-1]->next = mp[m-n]->next;
+        
+//         return head;
+        
+        //Using dummy node
+        ListNode* dummy = new ListNode(0, head);
+        ListNode* left = dummy;
+        ListNode* right = head;
+        
+        while(n > 0 && right){
+            right = right->next;
+            n -= 1;
         }
         
-        if((m - n) == 0)
-            head = head->next;
+        while(right){
+            right = right->next;
+            left = left->next;
+        }
         
-        else
-            mp[m-n-1]->next = mp[m-n]->next;
+        left->next = left->next->next;
         
-        return head;
+        return dummy->next;
         
     }
 };
