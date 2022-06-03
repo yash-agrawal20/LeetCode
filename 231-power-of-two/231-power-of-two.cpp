@@ -2,6 +2,7 @@ class Solution {
 public:
     bool isPowerOfTwo(int n) {
         
+        //Method 1
 //         bool val = true;
         
 //         if(n > 0 && n < 1){
@@ -16,24 +17,36 @@ public:
         
 //         return val;
         
+        //Method 2
+//         if(n <= 0)
+//             return false;
+        
+//         if(n > 0 && n < 1)
+//             n = 1/n;
+        
+//         int count  = 0;
+//         //Bit manipulation
+//         while(n){
+            
+//             count += n & 1;
+//             n >>= 1;
+            
+//             if(count > 1)
+//                 return false;
+//         }
+        
+//         return true;
+            
+        //Method 3
         if(n <= 0)
             return false;
         
         if(n > 0 && n < 1)
             n = 1/n;
         
-        int count  = 0;
-        //Bit manipulation
-        while(n){
-            
-            count += n & 1;
-            n >>= 1;
-            
-            if(count > 1)
-                return false;
-        }
+        if(n & (n-1))
+            return false;
         
         return true;
-            
     }
 };
