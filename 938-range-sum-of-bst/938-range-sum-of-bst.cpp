@@ -14,7 +14,30 @@ public:
     int rangeSumBST(TreeNode* root, int low, int high) {
         
         //Iterative Approach
+//         queue<TreeNode*> q;
+//         q.push(root);
+//         int sum = 0;
+        
+//         while(!q.empty()){
+            
+//             TreeNode* temp = q.front();
+//             q.pop();
+            
+//             if(temp->val >= low && temp->val <= high)
+//                 sum += temp->val;
+            
+//             if(temp->left)
+//                 q.push(temp->left);
+            
+//             if(temp->right)
+//                 q.push(temp->right);
+//         }
+        
+//         return sum;
+        
+        //Using the properties of BST
         queue<TreeNode*> q;
+        
         q.push(root);
         int sum = 0;
         
@@ -23,17 +46,23 @@ public:
             TreeNode* temp = q.front();
             q.pop();
             
-            if(temp->val >= low && temp->val <= high)
+            if(temp->val >= low && temp->val <= high){
                 sum += temp->val;
+                
+                if(temp->right)
+                    q.push(temp->right);
+                
+                if(temp->left)
+                    q.push(temp->left);
+            }
             
-            if(temp->left)
+            if(temp->val > high && temp->left)
                 q.push(temp->left);
             
-            if(temp->right)
+            if(temp->val < low && temp->right)
                 q.push(temp->right);
         }
         
-        return sum;
-        
+        return sum;        
     }
 };
