@@ -13,8 +13,11 @@ class Solution {
 private:
     bool f(TreeNode* node1, TreeNode* node2){
         
+        if(!node1 && !node2)
+            return true;
+        
         if(!node1 || !node2)
-            return node1 == NULL && node2 == NULL;
+            return false;
         
         else if(node1->val == node2->val){
             
@@ -32,8 +35,9 @@ public:
         if(!root)
             return false;
         
-        else if(f(root, subRoot))
+        else if(f(root, subRoot)){
             return true;
+        }
         
         else
             return isSubtree(root->left, subRoot) || isSubtree(root->right, subRoot);
