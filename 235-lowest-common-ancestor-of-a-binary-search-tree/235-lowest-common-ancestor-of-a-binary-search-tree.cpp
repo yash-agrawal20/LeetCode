@@ -11,25 +11,39 @@
  */
 
 class Solution {
+private: 
+    TreeNode* f(TreeNode* root, TreeNode* p, TreeNode* q){
+        
+        if(root->val > p->val && root->val > q->val)
+            return f(root->left, p, q);
+        
+        if(root->val < p->val && root->val < q->val)
+            return f(root->right, p, q);
+        
+        return root;
+    }
 public:
     TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
         
         //Iteratively
-        TreeNode* curr = root;
+//         TreeNode* curr = root;
         
-        while(true){
+//         while(true){
             
-            if(curr->val > p->val && curr->val > q->val)
-                curr = curr->left;
+//             if(curr->val > p->val && curr->val > q->val)
+//                 curr = curr->left;
             
-            else if(curr->val < p->val && curr->val < q->val)
-                curr = curr->right;
+//             else if(curr->val < p->val && curr->val < q->val)
+//                 curr = curr->right;
             
-            else 
-                break;
-        }
+//             else 
+//                 break;
+//         }
         
-        return curr;
+//         return curr;
+        
+        //Recursively
+        return f(root, p, q);
         
     }
 };
